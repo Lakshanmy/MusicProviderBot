@@ -364,7 +364,7 @@ async def ytsong(_, message):
     is_downloading = False
 
 @Client.on_message(filters.command(["video", "mp4"]))
-async def ytmusic(client, message: Message):
+async def ytvideo(client, message: Message):
     global is_downloading
     if is_downloading:
         await message.reply_text(
@@ -375,7 +375,7 @@ async def ytmusic(client, message: Message):
     urlissed = get_text(message)
 
     pablo = await client.send_message(
-        message.chat.id, f"`🔎 Searching the video...`"
+        message.chat.id, f"`🔎 Searching...`"
     )
     if not urlissed:
         await pablo.edit("__🙄 requires a song name.__")
@@ -426,7 +426,7 @@ async def ytmusic(client, message: Message):
     c_time = time.time()
     file_stark = f"{ytdl_data['id']}.mp4"
     capy = f"**🎞Video Name:** [{thum}]({mo}) \n\n**🎤Requested For:** `{urlissed}` \n\n**🎬Uploaded By:** __@UwMusicProviderBot via Youtube.__ \n**© @UNLIMITEDworldTEAM**"
-    await message.reply_video(
+    await client.send_video(
         message.chat.id,
         video=open(file_stark, "rb"),
         duration=int(ytdl_data["duration"]),
