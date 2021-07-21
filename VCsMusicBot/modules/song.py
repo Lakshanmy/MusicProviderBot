@@ -426,7 +426,7 @@ async def ytmusic(client, message: Message):
     c_time = time.time()
     file_stark = f"{ytdl_data['id']}.mp4"
     capy = f"**🎞Video Name:** [{thum}]({mo}) \n\n**🎤Requested For:** `{urlissed}` \n\n**🎬Uploaded By:** __@UwMusicProviderBot via Youtube.__ \n**© @UNLIMITEDworldTEAM**"
-    await client.reply_video(
+    await message.reply_video(
         message.chat.id,
         video=open(file_stark, "rb"),
         duration=int(ytdl_data["duration"]),
