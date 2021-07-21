@@ -21,7 +21,7 @@ from youtubesearchpython import SearchVideos
 from VCsMusicBot.config import DURATION_LIMIT
 from VCsMusicBot.modules.play import arq
         
-@Client.on_message(filters.command(["amusic" ,"ytsong"]) & ~filters.channel)
+@Client.on_message(filters.command(["audio" ,"m4a"]) & ~filters.channel)
 def song(client, message):
 
     user_id = message.from_user.id
@@ -32,7 +32,7 @@ def song(client, message):
     for i in message.command[1:]:
         query += " " + str(i)
     print(query)
-    m = message.reply("`🔎 Searching the song...`")
+    m = message.reply("`🔎 Searching...`")
     ydl_opts = {"format": "bestaudio[ext=m4a]"}
     try:
         results = YoutubeSearch(query, max_results=1).to_dict()
@@ -49,10 +49,11 @@ def song(client, message):
         results[0]["views"]
 
     except Exception as e:
-        m.edit("❓ __Found Nothing__ ❓\n\n`Try another keywork or maybe spell it properly.`")
+        m.edit("__🙄 requires a song name.__")
         print(str(e))
         return
-    m.edit("`📥 Downloading the song...` ")
+    m.edit("`📥 Downloading...` ")
+    m.edit("`📤 Uploading...`")
     try:
         with youtube_dl.YoutubeDL(ydl_opts) as ydl:
             info_dict = ydl.extract_info(link, download=False)
@@ -73,7 +74,7 @@ def song(client, message):
         )
         m.delete()
     except Exception as e:
-        m.edit("❌ __Error__ ❌")
+        m.edit("**❌ Error ❌**")
         print(e)
 
     try:
@@ -246,11 +247,11 @@ def time_to_seconds(time):
     return sum(int(x) * 60 ** i for i, x in enumerate(reversed(stringt.split(":"))))
 
 
-@Client.on_message(filters.command(["jiosaavn" ,"jmusic"]) & ~filters.edited)
+@Client.on_message(filters.command(["jssong" ,"jsmusic"]) & ~filters.edited)
 async def jssong(_, message):
     global is_downloading
     if len(message.command) < 2:
-        await message.reply_text("__/jmusic <requires a song name.>__")
+        await message.reply_text("__🙄 requires a song name.__")
         return
     if is_downloading:
         await message.reply_text(
@@ -286,11 +287,11 @@ async def jssong(_, message):
 # Deezer Music
 
 
-@Client.on_message(filters.command(["deezer" ,"dmusic"]) & ~filters.edited)
+@Client.on_message(filters.command(["dzsong" ,"dzmusic"]) & ~filters.edited)
 async def deezsong(_, message):
     global is_downloading
     if len(message.command) < 2:
-        await message.reply_text("__/dmusic <requires a song name.>__")
+        await message.reply_text("__🙄 requires a song name.__")
         return
     if is_downloading:
         await message.reply_text(
@@ -326,8 +327,8 @@ async def deezsong(_, message):
 # spotify music
 
 
-@Client.on_message(filters.command("smusic") & ~filters.edited)
-async def spsong(_, message):
+@Client.on_message(filters.command(["ytsong" ,"ytmusic"]) & ~filters.edited)
+async def ytsong(_, message):
     global is_downloading
     if len(message.command) < 2:
         await message.reply_text("__🙄 requires a song name.__")
@@ -342,7 +343,7 @@ async def spsong(_, message):
     query = text.replace(" ", "%20")
     m = await message.reply_text("`🔎 Searching...`")
     try:
-        songs = await arq.spotify(query, 1)
+        songs = await arq.youtube(query, 1)
         if not songs.ok:
             await message.reply_text(songs.result)
             return
@@ -352,7 +353,7 @@ async def spsong(_, message):
         await m.edit("`📥 Downloading...`")
         song = await download_song(url)
         await m.edit("`📤 Uploading...`")
-        rep = "**🎵Uploaded By:** __@UwMusicProviderBot via Spotify.__ \n**© @UNLIMITEDworldTEAM**"
+        rep = "**🎵Uploaded By:** __@UwMusicProviderBot via YouTube.__ \n**© @UNLIMITEDworldTEAM**"
         await message.reply_audio(audio=song, title=title, performer=artist, caption=rep)
         os.remove(song)
         await m.delete()
@@ -362,12 +363,12 @@ async def spsong(_, message):
         return
     is_downloading = False
 
-@Client.on_message(filters.command(["vmusic", "ytvideo"]))
+@Client.on_message(filters.command(["video", "mp4"]))
 async def ytmusic(client, message: Message):
     global is_downloading
     if is_downloading:
         await message.reply_text(
-            "🤒 __Another download is in progress, try again after sometime.__"
+            "🤒 __Another download is in progress, please try again after sometime.__"
         )
         return
 
@@ -377,7 +378,7 @@ async def ytmusic(client, message: Message):
         message.chat.id, f"`🔎 Searching the video...`"
     )
     if not urlissed:
-        await pablo.edit("❗ __Invalid Command Syntax, Please Check Help Menu To Know More!__")
+        await pablo.edit("__🙄 requires a song name.__")
         return
 
     search = SearchVideos(f"{urlissed}", offset=1, mode="dict", max_results=1)
@@ -425,7 +426,7 @@ async def ytmusic(client, message: Message):
     c_time = time.time()
     file_stark = f"{ytdl_data['id']}.mp4"
     capy = f"**🎞Video Name:** [{thum}]({mo}) \n\n**🎤Requested For:** `{urlissed}` \n\n**🎬Uploaded By:** __@UwMusicProviderBot via Youtube.__ \n**© @UNLIMITEDworldTEAM**"
-    await client.send_video(
+    await client.reply_video(
         message.chat.id,
         video=open(file_stark, "rb"),
         duration=int(ytdl_data["duration"]),
