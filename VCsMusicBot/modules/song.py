@@ -246,15 +246,15 @@ def time_to_seconds(time):
     return sum(int(x) * 60 ** i for i, x in enumerate(reversed(stringt.split(":"))))
 
 
-@Client.on_message(filters.command("jmusic") & ~filters.edited)
+@Client.on_message(filters.command(["jiosaavn" ,"jmusic"]) & ~filters.edited)
 async def jssong(_, message):
     global is_downloading
     if len(message.command) < 2:
-        await message.reply_text("__/jmusic requires a song name.__")
+        await message.reply_text("__/jmusic <requires a song name.>__")
         return
     if is_downloading:
         await message.reply_text(
-            "🤒 __Another download is in progress, try again after sometime.__"
+            "🤒 __Another download is in progress, please try again after sometime.__"
         )
         return
     is_downloading = True
@@ -286,15 +286,15 @@ async def jssong(_, message):
 # Deezer Music
 
 
-@Client.on_message(filters.command("dmusic") & ~filters.edited)
+@Client.on_message(filters.command(["deezer" ,"dmusic"]) & ~filters.edited)
 async def deezsong(_, message):
     global is_downloading
     if len(message.command) < 2:
-        await message.reply_text("__/dmusic requires a song name.__")
+        await message.reply_text("__/dmusic <requires a song name.>__")
         return
     if is_downloading:
         await message.reply_text(
-            "🤒 __Another download is in progress, try again after sometime.__"
+            "🤒 __Another download is in progress, please try again after sometime.__"
         )
         return
     is_downloading = True
@@ -330,11 +330,11 @@ async def deezsong(_, message):
 async def spsong(_, message):
     global is_downloading
     if len(message.command) < 2:
-        await message.reply_text("__/smusic requires a song name.__")
+        await message.reply_text("__🙄 requires a song name.__")
         return
     if is_downloading:
         await message.reply_text(
-            "🤒 __Another download is in progress, try again after sometime.__"
+            "🤒 __Another download is in progress, please try again after sometime.__"
         )
         return
     is_downloading = True
@@ -342,7 +342,7 @@ async def spsong(_, message):
     query = text.replace(" ", "%20")
     m = await message.reply_text("`🔎 Searching...`")
     try:
-        songs = await arq.pornhub(query, 1)
+        songs = await arq.spotify(query, 1)
         if not songs.ok:
             await message.reply_text(songs.result)
             return
