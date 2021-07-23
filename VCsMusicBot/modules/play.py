@@ -1278,3 +1278,121 @@ async def lol_cb(b, cb):
         )
         
         os.remove("final.png")
+
+        
+        
+#song download
+    
+    
+    @Client.on_message(filters.command("download") & filters.group & ~filters.edited)
+async def download(_, message: Message):
+    global que
+    if message.chat.id in DISABLED_GROUPS:
+        return
+    lel = await message.reply("🔄 <b>Processing</b>")
+    administrators = await get_administrators(message.chat)
+    chid = message.chat.id
+
+    try:
+        user = await USER.get_me()
+    except:
+        user.first_name = "helper"
+    usar = user
+    wew = usar.id
+    try:
+        # chatdetails = await USER.get_chat(chid)
+        await _.get_chat_member(chid, wew)
+    except:
+        for administrator in administrators:
+            if administrator == message.from_user.id:
+                if message.chat.title.startswith("Channel Music:")   await USER.get_chat(chid)
+   try:
+     # lmoa = await client.get_chat_member(chid,wew)  
+ await lel.edit("🔎 <b>Finding</b>")
+    user_id = message.from_user.id
+    user_name = message.from_user.first_name
+     
+
+    query = ""
+    for i in message.command[1:]:
+        query += " " + str(i)
+    print(query)
+    await lel.edit("🎵 <b>Processing</b>")
+    try:
+        results = YoutubeSearch(query, max_results=1).to_dict()
+        url = f"https://youtube.com{results[0]['url_suffix']}"
+        # print(results)
+        title = results[0]["title"][:40]
+        thumbnail = results[0]["thumbnails"][0]
+        thumb_name = f"thumb{title}.jpg"
+        thumb = requests.get(thumbnail, allow_redirects=True)
+        open(thumb_name, "wb").write(thumb.content)
+        duration = results[0]["duration"]
+        results[0]["url_suffix"]
+        views = results[0]["views"]
+
+    except Exception as e:
+        await lel.edit(
+            "Song not found.Try another song or maybe spell it properly."
+        )
+        print(str(e))
+        return
+    try:    
+        secmul, dur, dur_arr = 1, 0, duration.split(':')
+        for i in range(len(dur_arr)-1, -1, -1):
+            dur += (int(dur_arr[i]) * secmul)
+            secmul *= 60
+        if (dur / 60) > DURATION_LIMIT:
+             await lel.edit(f"❌ Videos longer than {DURATION_LIMIT} minutes aren't allowed to play!")
+             return
+    except:
+        pass    
+    dlurl=url
+    dlurl=dlurl.replace("youtube","youtubepp")
+    keyboard = InlineKeyboardMarkup(
+        [
+            [
+                InlineKeyboardButton(text="🎬 YouTube 🎬", url=f"{url}"),
+                InlineKeyboardButton(text="📥 Download 📥", url=f"{dlurl}"),
+            ],
+            [InlineKeyboardButton(text="❌ Close ❌", callback_data="cls")],
+        ]
+    )
+    requested_by = message.from_user.first_name
+    await generate_cover(requested_by, title, views, duration, thumbnail)
+    file_path = await convert(youtube.download(url))
+    chat_id = get_chat_id(message.chat)
+    if chat_id
+        position = await queues.put(chat_id, file=file_path)
+        qeue = que.get(chat_id)
+        s_name = title
+        r_by = message.from_user
+        loc = file_path
+        appendable = [s_name, r_by, loc]
+        qeue.append(appendable)
+        await message.reply_photo(
+            photo="final.png",
+            caption=f"#⃣ Your requested song <b>queued</b> at download",
+            reply_markup=keyboard,
+        )
+        os.remove("final.png")
+        return await lel.delete()
+    else:
+        chat_id = get_chat_id(message.chat)
+        que[chat_id] = []
+        qeue = que.get(chat_id)
+        s_name = title
+        r_by = message.from_user
+        loc = file_path
+        appendable = [s_name, r_by, loc]
+        qeue.append(appendable)
+        try:
+           await message.reply_photo(
+            photo="final.png",
+            reply_markup=keyboard,
+            caption="▶️ <i> Download the song requested by {} via YouTube Music.".format(
+                message.from_user.mention()
+            ),
+        )
+        os.remove("final.png")
+        return await lel.delete()
