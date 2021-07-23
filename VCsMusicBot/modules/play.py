@@ -1285,7 +1285,7 @@ async def lol_cb(b, cb):
     
     
     @Client.on_message(filters.command("download") & filters.group & ~filters.edited)
-async def download(_, message: Message):
+async def musicdl(_, message: Message):
     global que
     if message.chat.id in DISABLED_GROUPS:
         return
