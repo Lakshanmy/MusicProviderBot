@@ -135,18 +135,20 @@ async def playlist(client, message):
         temp.append(t)
     now_playing = temp[0][0]
     by = temp[0][1].mention(style="md")
-    msg = "**Now Playing** in {}".format(message.chat.title)
-    msg += "\n**- Song name :** " + now_playing
+    msg = "Music Playlist in **{}**".format(message.chat.title)
+    msg += "\n\n"
+    msg += "▶ **Now Playing**"
+    msg += "\n**- Title :** " + now_playing
     msg += "\n**- Requested by :** " + by
     temp.pop(0)
     if temp:
         msg += "\n\n"
-        msg += "**Queue**"
+        msg += "🔁 **Queue**"
         for song in temp:
             name = song[0]
             usr = song[1].mention(style="md")
-            msg += f"\n**- Song name :** __{name}__"
-            msg += f"\n**- Requested by :** __{usr}__\n"
+            msg += f"\n**- Title :** {name}"
+            msg += f"\n**- Requested by :** {usr}\n"
     await message.reply_text(msg)
 
 
@@ -156,13 +158,13 @@ async def playlist(client, message):
 def updated_stats(chat, queue, vol=100):
     if chat.id in callsmusic.active_chats:
         # if chat.id in active_chats:
-        stats = "Settings of **{}**".format(chat.title)
+        stats = "Music Player of **{}**".format(chat.title)
         if len(que) > 0:
             stats += "\n\n"
-            stats += "**🎧 Now Playing :** __{}__\n".format(queue[0][0])
-            stats += "**🔊 Volume :** __{}%__\n".format(vol)
-            stats += "**🎸 Songs in queue :** __{}__\n".format(len(que))
-            stats += "**🎙 Requested by :** __{}__".format(queue[0][1].mention)
+            stats += "**- Now Playing :** {}\n".format(queue[0][0])
+            stats += "**- Volume :** {}%\n".format(vol)
+            stats += "**- Songs in queue :** {}\n".format(len(que))
+            stats += "**- Requested by :** {}".format(queue[0][1].mention)
     else:
         stats = None
     return stats
@@ -205,7 +207,7 @@ async def ee(client, message):
 @authorized_users_only
 async def settings(client, message):
     if message.chat.id in DISABLED_GROUPS:
-        await message.reply("❕ __Music Player is Disabled.__")
+        await message.reply("❗ __Music Player is Disabled.__")
         return    
     playing = None
     chat_id = get_chat_id(message.chat)
@@ -234,7 +236,7 @@ async def hfmm(_, message):
         return
     if len(message.command) != 2:
         await message.reply_text(
-            "I only recognize `/musicplayer on` and `/musicplayer off` only."
+            "⚠ I only recognize (`/musicplayer on`) and (`/musicplayer off`) only."
         )
         return
     status = message.text.split(None, 1)[1]
@@ -261,7 +263,7 @@ async def hfmm(_, message):
         )
     else:
         await message.reply_text(
-            "⚠ I only recognize `/musicplayer on` and /musicplayer `off only`"
+            "⚠ I only recognize (`/musicplayer on`) and (`/musicplayer off`) only."
         )    
         
 
@@ -397,7 +399,6 @@ async def m_cb(b, cb):
                 [
                     InlineKeyboardButton("📖 Playlist 📖", "playlist"),
                 ],
-                [InlineKeyboardButton("🎵 current 🎵", "ee")],
             ]
         )
         await cb.message.edit(stats, reply_markup=marr)
@@ -410,7 +411,7 @@ async def m_cb(b, cb):
             queues.task_done(chet_id)
             if queues.is_empty(chet_id):
                 callsmusic.stop(chet_id)
-                await cb.message.edit("- No More Playlist..\n- Leaving VC!")
+                await cb.message.edit("- No More Playlist.\n- Leaving VoiceChat.")
             else:
                 await callsmusic.set_stream(
                     chet_id, queues.get(chet_id)["file"]
@@ -429,9 +430,9 @@ async def m_cb(b, cb):
                 pass
 
             await callsmusic.stop(chet_id)
-            await cb.message.edit("Successfully Left the Chat!")
+            await cb.message.edit("✅ __Successfully Left the Chat.__")
         else:
-            await cb.answer("Chat is not connected!", show_alert=True)
+            await cb.answer("❗ __Chat is not connected.__", show_alert=True)
 
 
 @Client.on_message(command("play") & other_filters)
@@ -440,7 +441,7 @@ async def play(_, message: Message):
     global useer
     if message.chat.id in DISABLED_GROUPS:
         return    
-    lel = await message.reply("🔄 <b>Processing</b>")
+    lel = await message.reply("🔄 <i>Processing</i>")
     administrators = await get_administrators(message.chat)
     chid = message.chat.id
 
