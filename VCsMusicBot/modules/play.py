@@ -129,7 +129,7 @@ async def playlist(client, message):
         return    
     queue = que.get(message.chat.id)
     if not queue:
-        await message.reply_text("Player is idle")
+        await message.reply_text("This Chat music player is inactive.")
     temp = []
     for t in queue:
         temp.append(t)
@@ -159,10 +159,10 @@ def updated_stats(chat, queue, vol=100):
         stats = "Settings of **{}**".format(chat.title)
         if len(que) > 0:
             stats += "\n\n"
-            stats += "Volume : {}%\n".format(vol)
-            stats += "Songs in queue : `{}`\n".format(len(que))
-            stats += "Now Playing : **{}**\n".format(queue[0][0])
-            stats += "Requested by : {}".format(queue[0][1].mention)
+            stats += "**🔊 Volume :** __{}%__\n".format(vol)
+            stats += "**🔁 Songs in queue :** __{}__\n".format(len(que))
+            stats += "**▶ Now Playing :** __{}__\n".format(queue[0][0])
+            stats += "**🎙 Requested by :** __{}__".format(queue[0][1].mention)
     else:
         stats = None
     return stats
@@ -182,9 +182,8 @@ def r_ply(type_):
                 InlineKeyboardButton("⏭", "skip"),
             ],
             [
-                InlineKeyboardButton("Playlist 📖", "playlist"),
+                InlineKeyboardButton("📖 Playlist 📖", "playlist"),
             ],
-            [InlineKeyboardButton("❌ Close", "cls")],
         ]
     )
     return mar
@@ -199,14 +198,14 @@ async def ee(client, message):
     if stats:
         await message.reply(stats)
     else:
-        await message.reply("No VC instances running in this chat")
+        await message.reply("❓ __No Voice Chat instances running in this chat.__")
 
 
 @Client.on_message(filters.command("player") & filters.group & ~filters.edited)
 @authorized_users_only
 async def settings(client, message):
     if message.chat.id in DISABLED_GROUPS:
-        await message.reply("Music Player is Disabled")
+        await message.reply("❕ __Music Player is Disabled.__")
         return    
     playing = None
     chat_id = get_chat_id(message.chat)
