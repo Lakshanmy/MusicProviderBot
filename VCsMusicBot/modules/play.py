@@ -135,20 +135,18 @@ async def playlist(client, message):
         temp.append(t)
     now_playing = temp[0][0]
     by = temp[0][1].mention(style="md")
-    msg = "Music Playlist in **{}**".format(message.chat.title)
+    msg = "📖 VoiceChat Music Playlist in **{}** 📖".format(message.chat.title)
     msg += "\n\n"
-    msg += "▶ **Now Playing**"
-    msg += "\n**- Title :** " + now_playing
-    msg += "\n**- Requested by :** " + by
+    msg += "\n**- 🎵 Title :** " + now_playing
+    msg += "\n**- 🎙 Requested by :** " + by
     temp.pop(0)
     if temp:
         msg += "\n\n"
-        msg += "🔁 **Queue**"
         for song in temp:
             name = song[0]
             usr = song[1].mention(style="md")
-            msg += f"\n**- Title :** {name}"
-            msg += f"\n**- Requested by :** {usr}\n"
+            msg += f"\n**- 🎵 Title :** {name}"
+            msg += f"\n**- 🎙 Requested by :** {usr}\n"
     await message.reply_text(msg)
 
 
@@ -158,13 +156,13 @@ async def playlist(client, message):
 def updated_stats(chat, queue, vol=100):
     if chat.id in callsmusic.active_chats:
         # if chat.id in active_chats:
-        stats = "Music Player of **{}**".format(chat.title)
+        stats = "🎛 VoiceChat Music Player of **{}** 🎛".format(chat.title)
         if len(que) > 0:
             stats += "\n\n"
-            stats += "**- Now Playing :** {}\n".format(queue[0][0])
-            stats += "**- Volume :** {}%\n".format(vol)
-            stats += "**- Songs in queue :** {}\n".format(len(que))
-            stats += "**- Requested by :** {}".format(queue[0][1].mention)
+            stats += "**- 🎧 Now Playing :** {}\n".format(queue[0][0])
+            stats += "**- 🔊 Volume :** {}%\n".format(vol)
+            stats += "**- 🎸 Songs in queue :** {}\n".format(len(que))
+            stats += "**- 🎙 Requested by :** {}".format(queue[0][1].mention)
     else:
         stats = None
     return stats
@@ -441,7 +439,7 @@ async def play(_, message: Message):
     global useer
     if message.chat.id in DISABLED_GROUPS:
         return    
-    lel = await message.reply("🔄 <i>Processing</i>")
+    lel = await message.reply("<code>🔎 Searching...</code>")
     administrators = await get_administrators(message.chat)
     chid = message.chat.id
 
@@ -496,7 +494,7 @@ async def play(_, message: Message):
         )
         return
     text_links=None
-    await lel.edit("🔎 <b>Finding</b>")
+    await lel.edit("<code>🔄 Processing...</code>")
     if message.reply_to_message:
         entities = []
         toxt = message.reply_to_message.text or message.reply_to_message.caption
@@ -550,7 +548,7 @@ async def play(_, message: Message):
         )
     elif urls:
         query = toxt
-        await lel.edit("🎵 <b>Processing</b>")
+        await lel.edit("<code>▶ Playing...</code>")
         ydl_opts = {"format": "bestaudio[ext=m4a]"}
         try:
             results = YoutubeSearch(query, max_results=1).to_dict()
@@ -604,7 +602,7 @@ async def play(_, message: Message):
         for i in message.command[1:]:
             query += " " + str(i)
         print(query)
-        await lel.edit("🎵 **Processing**")
+        await lel.edit("`🔄 Processing...`")
         ydl_opts = {"format": "bestaudio[ext=m4a]"}
         
         try:
@@ -720,12 +718,12 @@ async def play(_, message: Message):
         try:
             await callsmusic.set_stream(chat_id, file_path)
         except:
-            message.reply("Group Call is not connected or I can't join it")
+            message.reply("Group Call is not connected or I can't join it.")
             return
         await message.reply_photo(
             photo="final.png",
             reply_markup=keyboard,
-            caption="▶️ <b>Playing</b> here the song requested by {} via Youtube Music 😎".format(
+            caption="▶️ <b>Playing</b> here the song requested by {} via Youtube Music.".format(
                 message.from_user.mention()
             ),
         )
@@ -738,7 +736,7 @@ async def ytplay(_, message: Message):
     global que
     if message.chat.id in DISABLED_GROUPS:
         return
-    lel = await message.reply("🔄 <b>Processing</b>")
+    lel = await message.reply("<code>🔎 Searching...</code>")
     administrators = await get_administrators(message.chat)
     chid = message.chat.id
 
@@ -792,7 +790,7 @@ async def ytplay(_, message: Message):
             f"<i> {user.first_name} Userbot not in this chat, Ask admin to send /play command for first time or add {user.first_name} manually</i>"
         )
         return
-    await lel.edit("🔎 <b>Finding</b>")
+    await lel.edit("<code>🔄 Processing...</code>")
     user_id = message.from_user.id
     user_name = message.from_user.first_name
      
@@ -801,7 +799,7 @@ async def ytplay(_, message: Message):
     for i in message.command[1:]:
         query += " " + str(i)
     print(query)
-    await lel.edit("🎵 <b>Processing</b>")
+    await lel.edit("<code>▶ Playing...</code>")
     ydl_opts = {"format": "bestaudio[ext=m4a]"}
     try:
         results = YoutubeSearch(query, max_results=1).to_dict()
