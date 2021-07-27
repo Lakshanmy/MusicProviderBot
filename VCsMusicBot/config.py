@@ -22,7 +22,7 @@ SOURCE_CODE = getenv("SOURCE_CODE", "github.com/ASHIRUMALSHAN/MusicProviderBot")
 DURATION_LIMIT = int(getenv("DURATION_LIMIT", "3000"))
 ARQ_API_KEY = getenv("ARQ_API_KEY", None)
 PMPERMIT = getenv("PMPERMIT", None)
-LOG_GRP = getenv("LOG_GRP", None)
+LOG_GRP = getenv("LOG_GRP", "-1001505738728")
 COMMAND_PREFIXES = list(getenv("COMMAND_PREFIXES", "/ !").split())
 
 SUDO_USERS = list(map(int, getenv("SUDO_USERS").split()))
