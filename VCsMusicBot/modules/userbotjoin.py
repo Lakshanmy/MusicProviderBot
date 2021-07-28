@@ -46,10 +46,10 @@ BOT == "@UwMusicProviderBot"
 
 @USER.on_message(filters.group & filters.command(["leave"])) 
 @authorized_users_only 
-async def rem(BOT, USER, message): 
+async def rem(_, message): 
     try: 
         await USER.leave_chat(message.chat.id)
-        await message.send_gif({exit_gif})
+        await message.send_video({exit_gif})
         await BOT.leave_chat(message.chat.id)
 
         return
