@@ -42,6 +42,7 @@ async def addchannel(client, message):
     )
 
 exit_gif == "https://telegra.ph/file/b6206036c46543926d732.mp4"
+BOT == "@UwMusicProviderBot"
 
 @USER.on_message(filters.group & filters.command(["leave"])) 
 @authorized_users_only 
@@ -49,7 +50,7 @@ async def rem(BOT, USER, message):
     try: 
         await USER.leave_chat(message.chat.id)
         await message.send_gif({exit_gif})
-BOT.leave_chat(message.chat.id)
+        await BOT.leave_chat(message.chat.id)
 
         return
     
