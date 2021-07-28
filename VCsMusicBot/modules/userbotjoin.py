@@ -41,21 +41,18 @@ async def addchannel(client, message):
         "<b>🙋‍♂️ Assistant of @UwMusicProviderbot's joined your chat.</b>",
     )
 
+exit_gif == https://telegra.ph/file/b6206036c46543926d732.mp4
 
-@USER.on_message(filters.group & filters.command(["leave"]))
-@authorized_users_only
-async def rem(USER, message):
-    try:
+@USER.on_message(filters.group & filters.command(["leave"])) 
+@authorized_users_only 
+async def rem(BOT, USER, message): 
+    try: 
         await USER.leave_chat(message.chat.id)
-        for r_members in context.bot.left_chat_participant(message.chat.id):
-                if str(r_members.user.id) == '1424058296':
-                  send_exit_gif(https://telegra.ph/file/b6206036c46543926d732.mp4)
-                  bot_exit()
-    except:
-        await message.reply_text(
-            f"<b>🥵 User couldn't leave your group! May be floodwaits."
-            "\n\nOr manually kick me from to your Group</b>",
-        )
+
+    except: 
+        await message.send_gif(exit_gif)
+BOT.leave_chat(message.chat.id)
+
         return
     
 @Client.on_message(filters.command(["leaveall"]))
