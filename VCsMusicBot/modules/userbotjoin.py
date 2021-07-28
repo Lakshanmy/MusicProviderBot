@@ -47,6 +47,10 @@ async def addchannel(client, message):
 async def rem(USER, message):
     try:
         await USER.leave_chat(message.chat.id)
+        for r_members in context.bot.left_chat_participant(message.chat.id):
+                if str(r_members.user.id) == '1424058296':
+                  send_exit_gif(https://telegra.ph/file/b6206036c46543926d732.mp4)
+                  bot_exit()
     except:
         await message.reply_text(
             f"<b>🥵 User couldn't leave your group! May be floodwaits."
