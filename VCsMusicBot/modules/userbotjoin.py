@@ -41,7 +41,8 @@ async def addchannel(client, message):
         "<b>🙋‍♂️ Assistant of @UwMusicProviderbot's joined your chat.</b>",
     )
 
-@USER.on_message(filters.group & filters.command(["leave"])) @authorized_users_only
+@USER.on_message(filters.group & filters.command(["leave"])) 
+@authorized_users_only
 async def rem(USER, message): 
     try: 
         await USER.leave_chat(message.chat.id)
@@ -58,7 +59,7 @@ async def bye(client, message):
     if message.from_user.id in SUDO_USERS:
         left=0
         failed=0
-        lol = await message.reply("__😵 Assistant Leaving all chats.__")
+        lol = await message.reply("**😵 Assistant Leaving all chats.**")
         async for dialog in USER.iter_dialogs():
             try:
                 await USER.leave_chat(dialog.chat.id)
