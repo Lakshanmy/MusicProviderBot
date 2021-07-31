@@ -184,6 +184,9 @@ def r_ply(type_):
             [
                 InlineKeyboardButton("📖 Playlist 📖", "playlist"),
             ],
+            [ 
+                InlineKeyboardButton(text="Search", callback_data="yt_search"),
+            ] 
         ]
     )
     return mar
@@ -1180,13 +1183,13 @@ async def lol_cb(b, cb):
     try:
         x,query,useer_id = typed_.split("|")      
     except:
-        await cb.message.edit("Song Not Found")
+        await cb.message.edit("**❓ Song Not Found.**")
         return
     useer_id = int(useer_id)
     if cb.from_user.id != useer_id:
         await cb.answer("You ain't the person who requested to play the song!", show_alert=True)
         return
-    await cb.message.edit("Hang On... Player Starting")
+    await cb.message.edit("`🎧 Player Starting...`")
     x=int(x)
     try:
         useer_name = cb.message.reply_to_message.from_user.first_name
