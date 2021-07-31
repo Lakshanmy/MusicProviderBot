@@ -16,6 +16,7 @@ logging.getLogger("pyrogram").setLevel(logging.WARNING)
 
 
 @app.on_message(pyrogram.filters.command(["search" ,"ytsearch"]))
+if query.data == "yt_search"
 async def ytsearch(_, message: Message):
     try:
         if len(message.command) < 2:
