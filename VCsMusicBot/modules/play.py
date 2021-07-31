@@ -185,7 +185,7 @@ def r_ply(type_):
                 InlineKeyboardButton("📖 Playlist 📖", "playlist"),
             ],
             [ 
-                InlineKeyboardButton(text="Search", callback_data="yt_search"),
+                InlineKeyboardButton(text="Search", callback_data="ytsearch"),
             ] 
         ]
     )
@@ -267,6 +267,7 @@ async def hfmm(_, message):
             "⚠ I only recognize (`/musicplayer on`) and (`/musicplayer off`) only."
         )    
         
+@Client.on_callback_query(filters.regex(pattern=r"^(ytsearch)$"))
 
 @Client.on_callback_query(filters.regex(pattern=r"^(playlist)$"))
 async def p_cb(b, cb):
