@@ -269,8 +269,7 @@ async def hfmm(_, message):
         
 @Client.on_callback_query(filters.regex(pattern=r"^(ytsearch)$"))
 async def s_cb(b, cb):
-    global que
-    if
+        global que
         await cb.answer("🔎 Searching...", show_alert=True)
         query = message.text.split(None, 1)[1]
         results = YoutubeSearch(query, max_results=5).to_dict()
