@@ -31,7 +31,7 @@
     "PROJECT_NAME": {
       "description": "Your MusicPlayer project Name.",
       "required": false,
-      "value": "VCsMusicBot"
+      "value": "🎧 Music Provider Bot 🎧"
     },
     "ASSISTANT_NAME": {
       "description": "Your MusicPlayer's assistant Username without @.",
@@ -40,7 +40,7 @@
     "ARQ_API_KEY": {
       "description": "Get from @ARQRobot.",
       "required": false,
-      "value": "GUGFNB-XPUZDX-XGCKTJ-UZXHBZ-ARQ"
+      "value": "VLCFLT-EQMWZO-LSKBRT-OVMJDL-ARQ"
     },    
     "BG_IMAGE": {
       "description": "BG image of bot (Use transparent one) [IGNORE].",
