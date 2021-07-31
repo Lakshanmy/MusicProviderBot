@@ -268,12 +268,11 @@ async def hfmm(_, message):
         )    
         
 @Client.on_callback_query(filters.regex(pattern=r"^(ytsearch)$"))
-async def yts(_, message: Message):
+async def s_cb(b, cb):
     try:
-        if len(message.command) < 2:
-            await message.reply_text("`🔄 Procesing...`")
-        query = message.text.split(None, 1)[1]
-        m = await message.reply_text("`🔎 Searching...`")
+            await cb.message.reply_text("`🔄 Procesing...`")
+        query = cb.message.text.split(None, 1)[1]
+        m = await cb.message.reply_text("`🔎 Searching...`")
         results = YoutubeSearch(query, max_results=5).to_dict()
         i = 0
         text = ""
@@ -284,9 +283,9 @@ async def yts(_, message: Message):
             text += f"**- 📺 Channel :** {results[i]['channel']}\n"
             text += f"**- 🔗 Link :** https://youtube.com{results[i]['url_suffix']}\n\n"
             i += 1
-        await m.edit(text, disable_web_page_preview=True)
+        await cb.message.edit(text, disable_web_page_preview=True)
     except Exception as e:
-        await message.reply_text(str(e))
+        await cb.message.reply_text(str(e))
 
         
 @Client.on_callback_query(filters.regex(pattern=r"^(playlist)$"))
