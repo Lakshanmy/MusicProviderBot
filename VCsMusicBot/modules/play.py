@@ -185,7 +185,7 @@ def r_ply(type_):
                 InlineKeyboardButton("📖 Playlist 📖", "playlist"),
             ],
             [ 
-                InlineKeyboardButton(text="Search", callback_data="ytsearch"),
+                InlineKeyboardButton("🔎 Search 🔍", "ytsearch"),
             ] 
         ]
     )
@@ -283,8 +283,6 @@ async def s_cb(b, cb):
             text += f"**- 🔗 Link :** https://youtube.com{results[i]['url_suffix']}\n\n"
             i += 1
         await cb.message.edit(text, disable_web_page_preview=True)
-    except Exception as e:
-        await cb.message.reply_text(str(e))
 
         
 @Client.on_callback_query(filters.regex(pattern=r"^(playlist)$"))
