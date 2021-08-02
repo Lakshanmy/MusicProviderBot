@@ -6,7 +6,7 @@ if os.path.exists("local.env"):
     load_dotenv("local.env")
 
 que = {}
-SESSION_NAME = getenv("SESSION_NAME", "BQC9wkvFpv2jNsY5DMYeto6mqFL13Ad8cPTDG_U28CSYRBKbx3qBtpKTLoZQpdcdpTCu2BcXc73ipKc3wvyglWuc_NuUpMiF6Rc6plBPP5YLdJSEwDJ2SyYH88mSxa5mgTMJ58dLdydUBNbzo7CULHVFJDf3UStMJKpANxL_32J1to6C-phsZu6P-P9GRdmESn-UV1tc9i7dKgur5Po0ig9Wvzq1xVDg5jFHx-9N7QoQsHposaezjl67NlnFC-cBhXrJ-IO2sbjIL7gFI8WQhgLGMJ5N30iXpPpm1aNn_tQhiSKEPU6cZHv7QzTyHcqyEcAcu50UUaqIlxpiwlWLLzklVOFnuAA")
+SESSION_NAME = getenv("SESSION_NAME", "BQCLyYrmsi1pwhOBJpEj9Sv-fowYNtjp_rOtt5fe8Lz-e9ewiLH6vwZWQfEoPp_JkXzffJMdMqj15AeWi5W4HoPZtI0Swh7awOwqe6UZFGj7S1FMenKt1fwHzyUcB0IurYa0MOiad-LX0vymEOcPo3PzVaIWUfAzFib_wmlmzWvMkKzoJBTAA-Xbwiexghs2oRBgbFls8OqyBTIGIq16QK8DbiVL6yQgM0NSTCalrBLzqUKm74wMtF9KDJI9aq6gr0GxY9k_jBTNK86lg1S2524AsAD_hUlhanVinYQ45U9cI5saJ1dfJXaSDH9TKkwJ8jBC395sD6yV7iwN5zoCAhJ9VOFnuAA")
 BOT_TOKEN = getenv("BOT_TOKEN", "1881233435:AAFdghFULQV5Hq1cYh-Nf9vYUuDsEkfZadA")
 BOT_NAME = getenv("BOT_NAME", "uwmusicproviderbot")
 UPDATES_CHANNEL = getenv("UPDATES_CHANNEL", "unlimitedworld_TM_channel")
