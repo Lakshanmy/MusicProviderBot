@@ -183,10 +183,7 @@ def r_ply(type_):
             ],
             [
                 InlineKeyboardButton("📖 Playlist 📖", "playlist"),
-            ],
-            [ 
-                InlineKeyboardButton("🔎 Search 🔍", "ytsearch"),
-            ] 
+            ], 
         ]
     )
     return mar
