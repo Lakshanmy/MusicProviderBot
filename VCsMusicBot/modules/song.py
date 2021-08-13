@@ -19,7 +19,6 @@ from youtube_search import YoutubeSearch
 from youtubesearchpython import SearchVideos
 
 from VCsMusicBot.config import DURATION_LIMIT
-from VCsMusicBot.modules.play import arq
         
 @Client.on_message(filters.command(["audio" ,"m4a"]) & ~filters.channel)
 def song(client, message):
@@ -246,122 +245,6 @@ def time_to_seconds(time):
     stringt = str(time)
     return sum(int(x) * 60 ** i for i, x in enumerate(reversed(stringt.split(":"))))
 
-
-@Client.on_message(filters.command(["jssong" ,"jsmusic"]) & ~filters.edited)
-async def jssong(_, message):
-    global is_downloading
-    if len(message.command) < 2:
-        await message.reply_text("__🙄 requires a song name.__")
-        return
-    if is_downloading:
-        await message.reply_text(
-            "🤒 __Another download is in progress, please try again after sometime.__"
-        )
-        return
-    is_downloading = True
-    text = message.text.split(None, 1)[1]
-    query = text.replace(" ", "%20")
-    m = await message.reply_text("`🔎 Searching...`")
-    try:
-        songs = await arq.saavn(query)
-        if not songs.ok:
-            await message.reply_text(songs.result)
-            return
-        sname = songs.result[0].song
-        slink = songs.result[0].media_url
-        ssingers = songs.result[0].singers
-        await m.edit("`📥 Downloading...`")
-        song = await download_song(slink)
-        await m.edit("`📤 Uploading...`")
-        rep = "**🎵Uploaded By:** __@UwMusicProviderBot via Jiosaavn.__ \n**© @UNLIMITEDworldTEAM**"
-        await message.reply_audio(audio=song, title=sname, performer=ssingers, caption=rep,)
-        os.remove(song)
-        await m.delete()
-    except Exception as e:
-        is_downloading = False
-        await m.edit(str(e))
-        return
-    is_downloading = False
-
-
-# Deezer Music
-
-
-@Client.on_message(filters.command(["dzsong" ,"dzmusic"]) & ~filters.edited)
-async def deezsong(_, message):
-    global is_downloading
-    if len(message.command) < 2:
-        await message.reply_text("__🙄 requires a song name.__")
-        return
-    if is_downloading:
-        await message.reply_text(
-            "🤒 __Another download is in progress, please try again after sometime.__"
-        )
-        return
-    is_downloading = True
-    text = message.text.split(None, 1)[1]
-    query = text.replace(" ", "%20")
-    m = await message.reply_text("`🔎 Searching...`")
-    try:
-        songs = await arq.deezer(query, 1)
-        if not songs.ok:
-            await message.reply_text(songs.result)
-            return
-        title = songs.result[0].title
-        url = songs.result[0].url
-        artist = songs.result[0].artist
-        await m.edit("`📥 Downloading...`")
-        song = await download_song(url)
-        await m.edit("`📤 Uploading...`")
-        rep = "**🎵Uploaded By:** __@UwMusicProviderBot via Deezer.__ \n**© @UNLIMITEDworldTEAM**"
-        await message.reply_audio(audio=song, title=title, performer=artist, caption=rep)
-        os.remove(song)
-        await m.delete()
-    except Exception as e:
-        is_downloading = False
-        await m.edit(str(e))
-        return
-    is_downloading = False
-
-
-# spotify music
-
-
-@Client.on_message(filters.command(["ytsong" ,"ytmusic"]) & ~filters.edited)
-async def ytsong(_, message):
-    global is_downloading
-    if len(message.command) < 2:
-        await message.reply_text("__🙄 requires a song name.__")
-        return
-    if is_downloading:
-        await message.reply_text(
-            "🤒 __Another download is in progress, please try again after sometime.__"
-        )
-        return
-    is_downloading = True
-    text = message.text.split(None, 1)[1]
-    query = text.replace(" ", "%20")
-    m = await message.reply_text("`🔎 Searching...`")
-    try:
-        songs = await arq.youtube(query, 1)
-        if not songs.ok:
-            await message.reply_text(songs.result)
-            return
-        title = songs.result[0].title
-        url = songs.result[0].url
-        artist = songs.result[0].artist
-        await m.edit("`📥 Downloading...`")
-        song = await download_song(url)
-        await m.edit("`📤 Uploading...`")
-        rep = "**🎵Uploaded By:** __@UwMusicProviderBot via YouTube.__ \n**© @UNLIMITEDworldTEAM**"
-        await message.reply_audio(audio=song, title=title, performer=artist, caption=rep)
-        os.remove(song)
-        await m.delete()
-    except Exception as e:
-        is_downloading = False
-        await m.edit(str(e))
-        return
-    is_downloading = False
 
 @Client.on_message(filters.command(["video", "mp4"]))
 async def ytvideo(client, message: Message):
