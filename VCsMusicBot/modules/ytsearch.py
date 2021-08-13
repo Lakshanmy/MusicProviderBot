@@ -19,7 +19,7 @@ logging.getLogger("pyrogram").setLevel(logging.WARNING)
 async def ytsearch(_, message: Message):
     try:
         if len(message.command) < 2:
-            await message.reply_text("/ytsearch needs an argument!")
+            await message.reply_text("__🙄 requires a song name.__")
             return
         query = message.text.split(None, 1)[1]
         m = await message.reply_text("`🔎 Searching...`")
