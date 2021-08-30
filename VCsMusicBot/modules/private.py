@@ -13,19 +13,19 @@ def _start(client, message):
         reply_markup=InlineKeyboardMarkup(
             [
    [
-        InlineKeyboardButton(text="👤 Developer 👤", url="https://t.me/ASHIRUMALSHAN"),
+        InlineKeyboardButton(text="👤 Developer 👤", url="https://t.me/Lakshan_S"),
         InlineKeyboardButton(text="🤖 Bots List 🤖", url="https://t.me/unlimitedworld_TM_channel/1086"),],
    [
         InlineKeyboardButton(text="📺 Youtube 📺", url="https://youtube.com/channel/UCDXza1eZJDUVSO-twfX9V5g/join"),
         InlineKeyboardButton(text="📒 User Guide 📒", url="https://telegra.ph/Music-Provider-Bot-05-18"),],
    [
-        InlineKeyboardButton(text="💸 Donate 💸", url="https://paypal.me/ashirumalshan"),
+        InlineKeyboardButton(text="💸 SSH Store 💸", url="https://t.me/SSH_Store"),
           InlineKeyboardButton(text="🎗 Share 🎗", url="https://t.me/share/url?url=https://telegra.ph/Bots-List-06-28"),],
    [
         InlineKeyboardButton(text="💬 Group 💬", url="https://t.me/unlimitedworld_tm_group"),
         InlineKeyboardButton(text="🔔 Channel 🔔", url="https://t.me/unlimitedworld_TM_channel"),],
    [
-        InlineKeyboardButton(text="➕ Add Me To Your Group ➕", url="t.me/UwMusicProviderBot?startgroup=true"),]
+        InlineKeyboardButton(text="➕ Add Me To Your Group ➕", url="t.me/musicPlayer_FF_bot?startgroup=true"),]
             ]
         ),
         reply_to_message_id=message.message_id
@@ -78,19 +78,19 @@ def map(pos):
     if(pos==1):
         button = [
    [
-        InlineKeyboardButton(text="👤 Developer 👤", url="https://t.me/ASHIRUMALSHAN"),
+        InlineKeyboardButton(text="👤 Developer 👤", url="https://t.me/Lakshan_S"),
         InlineKeyboardButton(text="🤖 Bots List 🤖", url="https://t.me/unlimitedworld_TM_channel/1086"),],
    [
         InlineKeyboardButton(text="📺 Youtube 📺", url="https://youtube.com/channel/UCDXza1eZJDUVSO-twfX9V5g/join"),
         InlineKeyboardButton(text="📒 User Guide 📒", url="https://telegra.ph/Music-Provider-Bot-05-18"),],
    [
-        InlineKeyboardButton(text="💸 Donate 💸", url="https://paypal.me/ashirumalshan"),
+        InlineKeyboardButton(text="💸 SSH Store 💸", url="https://t.me/SSH_Store"),
           InlineKeyboardButton(text="🎗 Share 🎗", url="https://t.me/share/url?url=https://telegra.ph/Bots-List-06-28"),],
    [
         InlineKeyboardButton(text="💬 Group 💬", url="https://t.me/unlimitedworld_tm_group"),
         InlineKeyboardButton(text="🔔 Channel 🔔", url="https://t.me/unlimitedworld_TM_channel"),],
    [
-        InlineKeyboardButton(text="➕ Add Me To Your Group ➕", url="t.me/UwMusicProviderBot?startgroup=true"),], 
+        InlineKeyboardButton(text="➕ Add Me To Your Group ➕", url="t.me/musicPlayer_FF_bot?startgroup=true"),], 
    [
         InlineKeyboardButton(text = 'Next ➡', callback_data = "help+2")]
         ]
@@ -98,45 +98,45 @@ def map(pos):
         url = f"https://t.me/{SUPPORT_GROUP}"
         button = [
    [
-        InlineKeyboardButton(text="👤 Developer 👤", url="https://t.me/ASHIRUMALSHAN"),
+        InlineKeyboardButton(text="👤 Developer 👤", url="https://t.me/Lakshan_S"),
         InlineKeyboardButton(text="🤖 Bots List 🤖", url="https://t.me/unlimitedworld_TM_channel/1086"),],
    [
         InlineKeyboardButton(text="📺 Youtube 📺", url="https://youtube.com/channel/UCDXza1eZJDUVSO-twfX9V5g/join"),
         InlineKeyboardButton(text="📒 User Guide 📒", url="https://telegra.ph/Music-Provider-Bot-05-18"),],
    [
-        InlineKeyboardButton(text="💸 Donate 💸", url="https://paypal.me/ashirumalshan"),
+        InlineKeyboardButton(text="💸 SSH Store 💸", url="https://t.me/SSH_Store"),
           InlineKeyboardButton(text="🎗 Share 🎗", url="https://t.me/share/url?url=https://telegra.ph/Bots-List-06-28"),],
    [
         InlineKeyboardButton(text="💬 Group 💬", url="https://t.me/unlimitedworld_tm_group"),
         InlineKeyboardButton(text="🔔 Channel 🔔", url="https://t.me/unlimitedworld_TM_channel"),],
    [
-        InlineKeyboardButton(text="➕ Add Me To Your Group ➕", url="t.me/UwMusicProviderBot?startgroup=true"),],
+        InlineKeyboardButton(text="➕ Add Me To Your Group ➕", url="t.me/musicPlayer_FF_bot?startgroup=true"),],
    [
         InlineKeyboardButton(text = '⬅ Back', callback_data = f"help+{pos-1}")]
         ]
     else:
         button = [
    [
-        InlineKeyboardButton(text="👤 Developer 👤", url="https://t.me/ASHIRUMALSHAN"),
+        InlineKeyboardButton(text="👤 Developer 👤", url="https://t.me/Lakshan_S"),
         InlineKeyboardButton(text="🤖 Bots List 🤖", url="https://t.me/unlimitedworld_TM_channel/1086"),],
    [
         InlineKeyboardButton(text="📺 Youtube 📺", url="https://youtube.com/channel/UCDXza1eZJDUVSO-twfX9V5g/join"),
         InlineKeyboardButton(text="📒 User Guide 📒", url="https://telegra.ph/Music-Provider-Bot-05-18"),],
    [
-        InlineKeyboardButton(text="💸 Donate 💸", url="https://paypal.me/ashirumalshan"),
+        InlineKeyboardButton(text="💸 SSH Store 💸", url="https://t.me/SSH_Store"),
           InlineKeyboardButton(text="🎗 Share 🎗", url="https://t.me/share/url?url=https://telegra.ph/Bots-List-06-28"),],
    [
         InlineKeyboardButton(text="💬 Group 💬", url="https://t.me/unlimitedworld_tm_group"),
         InlineKeyboardButton(text="🔔 Channel 🔔", url="https://t.me/unlimitedworld_TM_channel"),],
    [
-        InlineKeyboardButton(text="➕ Add Me To Your Group ➕", url="t.me/UwMusicProviderBot?startgroup=true"),],
+        InlineKeyboardButton(text="➕ Add Me To Your Group ➕", url="t.me/musicPlayer_FF_bot?startgroup=true"),],
    [
         InlineKeyboardButton(text = '⬅ Back', callback_data = f"help+{pos-1}"),
         InlineKeyboardButton(text = 'Next ➡', callback_data = f"help+{pos+1}")],
         ]
     return button
 
-@Client.on_message(filters.command(["help","help@UwMusicProviderBot"]) & ~filters.private & ~filters.channel)
+@Client.on_message(filters.command(["help","help@musicPlayer_FF_bot"]) & ~filters.private & ~filters.channel)
 async def ghelp(_, message: Message):
     await message.reply_text(
         f"""**👋 Hello there! I can play music in the voice chats of telegram groups & channels. 🎶**""",
