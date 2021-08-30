@@ -58,7 +58,7 @@ def song(client, message):
             info_dict = ydl.extract_info(link, download=False)
             audio_file = ydl.prepare_filename(info_dict)
             ydl.process_info(info_dict)
-        rep = "**🎵Uploaded By:** __@UwMusicProviderBot via Youtube.__ \n**© @UNLIMITEDworldTEAM**"
+        rep = "**🎵Uploaded By:** __@musicPlayer_FF_bot via Youtube.__ \n**© @UNLIMITEDworldTEAM**"
         secmul, dur, dur_arr = 1, 0, duration.split(":")
         for i in range(len(dur_arr) - 1, -1, -1):
             dur += int(dur_arr[i]) * secmul
@@ -308,7 +308,7 @@ async def ytvideo(client, message: Message):
 
     c_time = time.time()
     file_stark = f"{ytdl_data['id']}.mp4"
-    capy = f"**🎞Video Name:** [{thum}]({mo}) \n\n**🎤Requested For:** `{urlissed}` \n\n**🎬Uploaded By:** __@UwMusicProviderBot via Youtube.__ \n**© @UNLIMITEDworldTEAM**"
+    capy = f"**🎞Video Name:** [{thum}]({mo}) \n\n**🎤Requested For:** `{urlissed}` \n\n**🎬Uploaded By:** __@musicPlayer_FF_bot via Youtube.__ \n**© @UNLIMITEDworldTEAM**"
     await client.send_video(
         message.chat.id,
         video=open(file_stark, "rb"),
