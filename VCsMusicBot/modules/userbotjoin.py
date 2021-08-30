@@ -21,24 +21,24 @@ async def addchannel(client, message):
     try:
         user = await USER.get_me()
     except:
-        user.first_name = "MusicBot"
+        user.first_name = "MusicPlayer_zone"
 
     try:
         await USER.join_chat(invitelink)
         await USER.send_message(message.chat.id, "<b>🤷‍♂️ I joined here as you requested.</b>")
     except UserAlreadyParticipant:
         await message.reply_text(
-            "<b>💁‍♂️ Assistant of @UwMusicProviderBot's already in your chat.</b>",
+            "<b>💁‍♂️ Assistant of @musicPlayer_FF_bot's already in your chat.</b>",
         )
     except Exception as e:
         print(e)
         await message.reply_text(
             f"<b>🛑 Flood Wait Error 🛑 \n User {user.first_name} couldn't join your group due to heavy join requests for userbot! Make sure user is not banned in group."
-            "\n\nOr manually add @UwMusicProvider to your Group and try again</b>",
+            "\n\nOr manually add @MusicPlayer_zone to your Group and try again</b>",
         )
         return
     await message.reply_text(
-        "<b>🙋‍♂️ Assistant of @UwMusicProviderbot's joined your chat.</b>",
+        "<b>🙋‍♂️ Assistant of @musicPlayer_FF_bot's joined your chat.</b>",
     )
 
 @USER.on_message(filters.group & filters.command(["leave"])) 
@@ -95,7 +95,7 @@ async def addcchannel(client, message):
     try:
         user = await USER.get_me()
     except:
-        user.first_name = "MusicBot"
+        user.first_name = "MusicPlayer_zone"
 
     try:
         await USER.join_chat(invitelink)
@@ -109,10 +109,10 @@ async def addcchannel(client, message):
         print(e)
         await message.reply_text(
             f"<b>🛑 Flood Wait Error 🛑 \n User {user.first_name} couldn't join your channel due to heavy join requests for userbot! Make sure user is not banned in channel."
-            "\n\nOr manually add @UwMusicProvider to your Group and try again</b>",
+            "\n\nOr manually add @MusicPlayer_zone to your Group and try again</b>",
         )
         return
     await message.reply_text(
-        "<b>🙋‍♂️ Assistant of @UwMusicProviderBot's joined your channel.</b>",
+        "<b>🙋‍♂️ Assistant of @musicPlayer_FF_bot's joined your channel.</b>",
     )
     
